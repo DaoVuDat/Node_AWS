@@ -11,8 +11,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 const db = require("./model");
+const dbConfig = require("./config/db.config");
+
+
 
 // force: true is for "In development, you may need to drop existing tables and re-sync database"
+// FOR DEVELOPMENT ONLY
+// use Migration of Sequelize in PRODUCTION
 db.sequelize.sync({force: true})
     .then(value => {
         console.log("Drop and re-sync db.");
@@ -45,9 +50,14 @@ db.sequelize.sync({force: true})
 //     });
 // });
 
+// Loading router
 require("./route/customer.route")(app);
+require("./route/box_size.route")(app);
+require("./route/straw_size.route")(app);
+require("./route/product.route")(app);
+require("./route/order.route")(app);
 
-const PORT = process.env.PORT || 5000;
+const PORT = dbConfig.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
 });

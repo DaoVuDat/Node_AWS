@@ -3,6 +3,7 @@
 //     USER: 'cocostraw',
 //     PASSWORD: 'cocostraw',
 //     DB: 'cocostrawdb',
+//     PORT: 8080,
 //     dialect: 'mysql',
 //     pool: {
 //         max: 5,

@@ -1,16 +1,26 @@
-module.exports = (sequelize, Sequelize) => {
-    const Customer = sequelize.define("customer", {
+module.exports = (sequelize, DataTypes) => {
+    const Customer = sequelize.define("tb-customer", {
+        id: {
+          type: DataTypes.BIGINT,
+          primaryKey: true,
+          autoIncrement: true
+        },
         name: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         },
         address: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         },
         phoneNumber: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         },
         email: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING,
+            allowNull:false,
+            unique: true
         }
     });
 

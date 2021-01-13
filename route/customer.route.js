@@ -1,7 +1,6 @@
-module.exports = app => {
+module.exports = (app) => {
     const customers = require("../controller/customer.controller");
-
-    const router = require("express").Router();
+    const router = require('express').Router();
 
     // Create a new Customer
     router.post("/", customers.create);
@@ -9,7 +8,7 @@ module.exports = app => {
     // Retrieve all Customers
     router.get("/", customers.findAll);
 
-    router.get("/:name", customers.findAllByName)
+    router.get("/query/", customers.findAllByName)
 
     // Retrieve a single Customer with id
     router.get("/:id", customers.findOne);

@@ -2,6 +2,7 @@ const db = require('../model');
 
 const Customer = db.customers;
 const Op = db.SequelizeOp;
+const attributeSelection = require("./attribute/customer.attribute_selection").attributeSelection;
 
 // Create and Save a new Tutorial
 module.exports.create = (req, res) => {
@@ -33,7 +34,9 @@ module.exports.create = (req, res) => {
 // Retrieve all Customers from the database.
 module.exports.findAll = (req, res) => {
 
-    Customer.findAll()
+    Customer.findAll({
+        attributes: attributeSelection
+    })
         .then(data => {
             res.send(data);
         })
@@ -48,10 +51,12 @@ module.exports.findAll = (req, res) => {
 
 // Retrieve all Customers with name from the database.
 module.exports.findAllByName = (req, res) => {
-    const name = req.params['name'];
-    const condition = name ? {name: {[Op.like]: `%${name}%`}} : null;
-    console.log(condition);
-    Customer.findAll({where: condition})
+    const name = req.query.name;
+    const condition = {name: {[Op.like]: `%${name}%`}}
+    Customer.findAll({
+        attributes: attributeSelection,
+        where: condition
+    })
         .then(data => {
             res.send(data);
         })
@@ -64,11 +69,22 @@ module.exports.findAllByName = (req, res) => {
 
 };
 
+// Retrieve Customers with email from the database.
+module.exports.findCustomerByEmail = async (email) => {
+    const condition = {email: {[Op.eq]: email}}
+    return Customer.findAll({
+        where: condition
+    })
+
+};
+
 // Find a single Tutorial with an id
 module.exports.findOne = (req, res) => {
     const id = req.params['id'].toString();
 
-    Customer.findByPk(id)
+    Customer.findByPk(id, {
+        attributes: attributeSelection,
+    })
         .then(value => {
             res.send(value);
         })
@@ -137,7 +153,7 @@ module.exports.deleteAll = (req, res) => {
         truncate: false
     })
         .then(nums => {
-            res.send({ message: `${nums} Customers were deleted successfully!` });
+            res.send({message: `${nums} Customers were deleted successfully!`});
         })
         .catch(err => {
             res.status(500).send({
