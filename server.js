@@ -52,10 +52,10 @@ db.sequelize.sync({force: true})
 
 // Loading router
 require("./route/customer.route")(app);
-require("./route/box_size.route")(app);
-require("./route/straw_size.route")(app);
-require("./route/product.route")(app);
-require("./route/order.route")(app);
+// require("./route/box_size.route")(app);
+// require("./route/straw_size.route")(app);
+// require("./route/product.route")(app);
+// require("./route/order.route")(app);
 
 const PORT = dbConfig.PORT || 5000;
 app.listen(PORT, () => {
