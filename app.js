@@ -57,7 +57,7 @@ require("./route/straw_size.route")(app);
 require("./route/product.route")(app);
 require("./route/order.route")(app);
 
-const PORT = process.env.port || 5000;
+const PORT = dbConfig.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
 });
