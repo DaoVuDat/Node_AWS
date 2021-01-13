@@ -33,8 +33,6 @@ module.exports.create = (req, res) => {
 
 // Retrieve all Customers from the database.
 module.exports.findAll = (req, res) => {
-    res.status(200).send('OK');
-    return;
     Customer.findAll({
         attributes: attributeSelection
     })
