@@ -18,7 +18,7 @@ const dbConfig = require("./config/db.config");
 // force: true is for "In development, you may need to drop existing tables and re-sync database"
 // FOR DEVELOPMENT ONLY
 // use Migration of Sequelize in PRODUCTION
-db.sequelize.sync({force: true})
+db.sequelize.sync()
     .then(value => {
         console.log("Drop and re-sync db.");
     });
