@@ -6,8 +6,6 @@ const attributeSelection = require("./attribute/customer.attribute_selection").a
 
 // Create and Save a new Tutorial
 module.exports.create = (req, res) => {
-    res.status(200).send('OK');
-    return;
     if (!req.body.name) {
         res.status(400).send({
             message: "Content cannot be empty!"
@@ -35,7 +33,8 @@ module.exports.create = (req, res) => {
 
 // Retrieve all Customers from the database.
 module.exports.findAll = (req, res) => {
-
+    res.status(200).send('OK');
+    return;
     Customer.findAll({
         attributes: attributeSelection
     })

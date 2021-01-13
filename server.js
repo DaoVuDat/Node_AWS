@@ -57,7 +57,7 @@ require("./route/customer.route")(app);
 // require("./route/product.route")(app);
 // require("./route/order.route")(app);
 
-const PORT = dbConfig.PORT || 5000;
+const PORT = dbConfig.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
 });
